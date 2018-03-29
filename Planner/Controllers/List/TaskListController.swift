@@ -32,7 +32,7 @@ class TaskListController: UITableViewController {
 
     // сколько будет записей в каждой секции
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 10
     }
 
 
@@ -40,7 +40,7 @@ class TaskListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
 
-        cell.textLabel?.text = "test value"
+        cell.textLabel?.text = "Строка"
 
         return cell
     }
