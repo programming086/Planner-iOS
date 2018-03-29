@@ -31,10 +31,21 @@ class TaskListController: UITableViewController {
 
         // добавляем категорию
         let cat1 = addCategory(name: "Спорт")
+        let cat2 = addCategory(name: "Семья")
+        let cat3 = addCategory(name: "Отдых")
+
+        // добавляем категорию
+        let priority1 = addPriority(name: "Низкий", index:1)
+        let priority2 = addPriority(name: "Нормальный", index:2)
+        let priority3 = addPriority(name: "Высокий", index:3)
 
 
         // добавляем задачу с категорием (и пустым приоритетом)
-        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date(), info: "доп. инфо", category: cat1, priority: nil)
+        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date(), info: "доп. инфо", category: cat1, priority: priority1)
+        let task2 = addTask(name: "Выезд на природу", completed: false, deadline: Date(), info: "", category: cat3, priority: priority3)
+        let task3 = addTask(name: "Вынести мусор", completed: false, deadline: Date(), info: "", category: cat1, priority: priority3)
+        let task4 = addTask(name: "Купить продукты", completed: false, deadline: Date(), info: "доп. инфо", category: cat2, priority: priority1)
+        let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date(), info: "", category: cat2, priority: priority1)
 
 
         // Uncomment the following line to preserve selection between presentations
@@ -64,6 +75,22 @@ class TaskListController: UITableViewController {
         }
 
         return category // возвращаем созданную категорию
+    }
+
+    func addPriority(name:String, index: Int32) -> Priority{
+
+        let priority = Priority(context: context) // указываем контекст для объекта
+
+        priority.name = name
+        priority.index = index
+
+        do {
+            try context.save() // сохраняем каждый новый объект
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
+
+        return priority // возвращаем созданный приоритет
     }
 
 
