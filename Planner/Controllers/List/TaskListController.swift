@@ -3,17 +3,22 @@ import UIKit
 
 class TaskListController: UITableViewController {
 
+        let dateFormatter = DateFormatter()
+
     // временный массив для тестовых данных
     private var taskList:[Task] = [
         Task(name:"Задача 1", category:"Категория 1"),
-        Task(name:"Задача 2", category:"Категория 2"),
-        Task(name:"Задача 3", category:"Категория 3"),
+        Task(name:"Задача 2", category:"Категория 2", priority: "Высокий"),
+        Task(name:"Задача 3", category:"Категория 3", deadline: Date()),
         Task(name:"Задача 4", category:"Категория 4")
     ]
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,12 +49,22 @@ class TaskListController: UITableViewController {
     }
 
 
+
     // отображение данных в строке
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
 
-        cell.textLabel?.text = taskList[indexPath.row].name // получить значение из массива по индексу и поле name
-        cell.detailTextLabel?.text = taskList[indexPath.row].category // получить значение из массива по индексу и поле category
+        let task = taskList[indexPath.row]
+
+        cell.textLabel?.text = task.name + " " + (task.priority ?? "")
+
+        // проверяем дату на пустоту
+        if let deadline = task.deadline{
+            cell.detailTextLabel?.text = (task.category ?? "") + " " + dateFormatter.string(from: deadline)
+        }else {
+            cell.detailTextLabel?.text =  (task.category ?? "")
+        }
+
 
         return cell
     }
