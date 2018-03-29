@@ -30,7 +30,7 @@ class TaskListController: UITableViewController {
         // получаем контекст из persistentContainer
         context = appDelegate.persistentContainer.viewContext
 
-//        initData()// запускаем только 1 раз для заполнения таблиц
+        initData()// запускаем только 1 раз для заполнения таблиц
 
         taskList = getAllTasks()
 
@@ -53,6 +53,9 @@ class TaskListController: UITableViewController {
         let cat1 = addCategory(name: "Спорт")
         let cat2 = addCategory(name: "Семья")
         let cat3 = addCategory(name: "Отдых")
+        let cat4 = addCategory(name: "Бизнес")
+        let cat5 = addCategory(name: "Здоровье")
+        let cat6 = addCategory(name: "Личное")
 
         // добавляем категорию
         let priority1 = addPriority(name: "Низкий", index:1)
@@ -61,11 +64,22 @@ class TaskListController: UITableViewController {
 
 
         // добавляем задачу с категорием (и пустым приоритетом)
-        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date(), info: "доп. инфо", category: cat1, priority: priority1)
-        let task2 = addTask(name: "Выезд на природу", completed: false, deadline: Date(), info: "", category: cat3, priority: priority3)
-        let task3 = addTask(name: "Вынести мусор", completed: false, deadline: Date(), info: "", category: cat1, priority: priority3)
-        let task4 = addTask(name: "Купить продукты", completed: false, deadline: Date(), info: "доп. инфо", category: cat2, priority: priority1)
-        let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date(), info: "", category: cat2, priority: priority1)
+        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date().rewindDays(15), info: "доп. инфо", category: cat1, priority: priority1)
+        let task2 = addTask(name: "Выезд на природу", completed: false, deadline: Date().rewindDays(-10), info: "", category: cat3, priority: priority3)
+        let task3 = addTask(name: "Вынести мусор", completed: false, deadline: Date().rewindDays(25), info: "", category: cat6, priority: priority3)
+        let task4 = addTask(name: "Купить продукты", completed: false, deadline: Date().rewindDays(1), info: "доп. инфо", category: cat2, priority: priority1)
+        let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date().today, info: "", category: cat2, priority: priority1)
+
+          let task6 = addTask(name: "Сделать ремонт", completed: false, deadline: Date().rewindDays(10), info: "", category: cat1, priority: priority1)
+
+          let task7 = addTask(name: "Отвезти в садик", completed: false, deadline: Date().today, info: "", category: cat3, priority: priority3)
+
+          let task8 = addTask(name: "Футбольный матч", completed: false, deadline: Date().today, info: "", category: cat5, priority: priority2)
+
+          let task9 = addTask(name: "Купить подарки", completed: false, deadline: Date().today, info: "", category: cat4, priority: priority1)
+
+          let task10 = addTask(name: "Помыть машину", completed: false, deadline: Date().today, info: "", category: cat6, priority: priority2)
+
 
     }
 
@@ -193,13 +207,31 @@ class TaskListController: UITableViewController {
         }
 
 
+        cell.labelDeadline.textColor = .lightGray
 
-        // проверяем дату на пустоту
-        if let deadline = task.deadline{
-            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
-        }else {
-            cell.labelDeadline?.text =  ""
+        // текст для отображения кол-ва дней по задаче
+        if let diff = task.daysLeft(){
+
+            switch diff {
+            case 0:
+                cell.labelDeadline.text = "Сегодня" // TODO: локализация
+            case 1:
+                cell.labelDeadline.text = "Завтра"
+            case 0...:
+                cell.labelDeadline.text = "\(diff) дн."
+
+            case ..<0:
+                cell.labelDeadline.textColor = .red
+                cell.labelDeadline.text = "\(diff) дн."
+
+            default:
+                cell.labelDeadline.text = ""
+            }
+
+        }else{
+            cell.labelDeadline.text = ""
         }
+
 
         return cell
     }
