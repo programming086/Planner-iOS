@@ -30,7 +30,7 @@ class TaskListController: UITableViewController {
         // получаем контекст из persistentContainer
         context = appDelegate.persistentContainer.viewContext
 
-        initData()// запускаем только 1 раз для заполнения таблиц
+//        initData()// запускаем только 1 раз для заполнения таблиц
 
         taskList = getAllTasks()
 
@@ -87,6 +87,7 @@ class TaskListController: UITableViewController {
 
     }
 
+    // добавить новую категорию
     func addCategory(name:String) -> Category{
 
         let category = Category(context: context) // указываем контекст для объекта
@@ -102,6 +103,7 @@ class TaskListController: UITableViewController {
         return category // возвращаем созданную категорию
     }
 
+    // добавить новый приоритет
     func addPriority(name:String, index: Int32) -> Priority{
 
         let priority = Priority(context: context) // указываем контекст для объекта
@@ -119,6 +121,7 @@ class TaskListController: UITableViewController {
     }
 
 
+    // добавить новую задачу
     func addTask(name:String, completed:Bool, deadline:Date?, info:String?, category:Category?, priority:Priority?) -> Task{ // опциональные типы необязательно передавать
 
         let task = Task(context: context) // указываем контекст для объекта
@@ -169,6 +172,8 @@ class TaskListController: UITableViewController {
 
         cell.labelTaskName.text = task.name
         cell.labelTaskCategory.text = (task.category?.name ?? "")
+        cell.labelPriority.text = (task.priority?.name ?? "")
+
 
 
         // проверяем дату на пустоту
