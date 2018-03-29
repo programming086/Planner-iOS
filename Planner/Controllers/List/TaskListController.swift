@@ -172,7 +172,25 @@ class TaskListController: UITableViewController {
 
         cell.labelTaskName.text = task.name
         cell.labelTaskCategory.text = (task.category?.name ?? "")
-        cell.labelPriority.text = (task.priority?.name ?? "")
+
+
+        // задаем цвет по приоритету
+        if let priority = task.priority{
+
+            switch priority.index{
+            case 1:
+                cell.labelPriority.backgroundColor = UIColor(named: "low")
+            case 2:
+                cell.labelPriority.backgroundColor = UIColor(named: "normal")
+            case 3:
+                cell.labelPriority.backgroundColor = UIColor(named: "high")
+            default:
+                cell.labelPriority.backgroundColor = UIColor.white
+            }
+
+        }else{
+            cell.labelPriority.backgroundColor = UIColor.white
+        }
 
 
 
@@ -186,6 +204,10 @@ class TaskListController: UITableViewController {
         return cell
     }
 
+    // установка высоты строки
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 
 
 
