@@ -19,6 +19,8 @@ class Db{
         // получаем контекст из persistentContainer
         context = appDelegate.persistentContainer.viewContext
 
+        initData()
+
     }
 
 
@@ -123,15 +125,15 @@ class Db{
 
 
         // добавляем задачу с категорием (и пустым приоритетом)
-        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date().rewindDays(15), info: "доп. инфо", category: cat1, priority: priority1)
+        let task1 = addTask(name: "Сходить в бассейн asd asdas dasdasdasdasdasdasd ", completed: false, deadline: Date().rewindDays(15), info: "доп. инфо", category: cat1, priority: priority1)
         let task2 = addTask(name: "Выезд на природу", completed: false, deadline: Date().rewindDays(-10), info: "", category: cat3, priority: priority3)
-        let task3 = addTask(name: "Вынести мусор", completed: false, deadline: Date().rewindDays(25), info: "", category: cat6, priority: priority3)
+        let task3 = addTask(name: "Вынести мусор as asdasdasdasdasdasdasdasdas asdasdasdas", completed: false, deadline: Date().rewindDays(25), info: "", category: cat6, priority: priority3)
         let task4 = addTask(name: "Купить продукты", completed: false, deadline: Date().rewindDays(1), info: "доп. инфо", category: cat2, priority: priority1)
-        let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date().today, info: "", category: cat2, priority: priority1)
+        let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date().today, info: "asdasdasdasdas", category: cat2, priority: priority1)
 
         let task6 = addTask(name: "Сделать ремонт", completed: false, deadline: Date().rewindDays(10), info: "", category: cat1, priority: priority1)
 
-        let task7 = addTask(name: "Отвезти в садик", completed: false, deadline: Date().today, info: "", category: cat3, priority: priority3)
+        let task7 = addTask(name: "Отвезти в садик", completed: false, deadline: Date().today, info: "asdasdasdasd", category: cat3, priority: priority3)
 
         let task8 = addTask(name: "Футбольный матч", completed: false, deadline: Date().today, info: "", category: cat5, priority: priority2)
 

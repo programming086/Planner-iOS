@@ -69,7 +69,7 @@ class TaskListController: UITableViewController {
     // отображение данных в строке
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath) as? TaskListCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTask", for: indexPath) as? TaskListCell else{
             fatalError("cell type")
         }
 
@@ -99,6 +99,8 @@ class TaskListController: UITableViewController {
 
 
         cell.labelDeadline.textColor = .lightGray
+
+
 
         // текст для отображения кол-ва дней по задаче
         if let diff = task.daysLeft(){
