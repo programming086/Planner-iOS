@@ -6,6 +6,8 @@ class TaskListController: UITableViewController {
 
     let dateFormatter = DateFormatter()
 
+    var taskList:[Task]! // коллекция, которая будет заполняться из БД
+
     var context:NSManagedObjectContext! // контекст для связи объектов с БД
 
     override func viewDidLoad() {
@@ -28,7 +30,25 @@ class TaskListController: UITableViewController {
         // получаем контекст из persistentContainer
         context = appDelegate.persistentContainer.viewContext
 
+        initData()// запускаем только 1 раз для заполнения таблиц
 
+        taskList = getAllTasks()
+
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // нужно запускать только 1 раз
+    func initData() {
         // добавляем категорию
         let cat1 = addCategory(name: "Спорт")
         let cat2 = addCategory(name: "Семья")
@@ -47,20 +67,25 @@ class TaskListController: UITableViewController {
         let task4 = addTask(name: "Купить продукты", completed: false, deadline: Date(), info: "доп. инфо", category: cat2, priority: priority1)
         let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date(), info: "", category: cat2, priority: priority1)
 
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
+    // получает все задачи из таблицы
+    func getAllTasks() -> [Task] {
+
+        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest() // подготовка контейнера для выборки данных
+
+        let list:[Task]
+
+        do {
+             list = try context.fetch(fetchRequest) // выборка данных
+        } catch {
+            fatalError("Fetching Failed")
+        }
+
+        return list
+
+    }
 
     func addCategory(name:String) -> Category{
 
@@ -128,7 +153,7 @@ class TaskListController: UITableViewController {
 
     // сколько будет записей в каждой секции
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return taskList.count
     }
 
 
@@ -140,18 +165,18 @@ class TaskListController: UITableViewController {
             fatalError("cell type")
         }
 
-//        let task = taskList[indexPath.row]
-//
-//        cell.labelTaskName.text = task.name
-//        cell.labelTaskCategory.text = (task.category ?? "")
-//
-//
-//        // проверяем дату на пустоту
-//        if let deadline = task.deadline{
-//            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
-//        }else {
-//            cell.labelDeadline?.text =  ""
-//        }
+        let task = taskList[indexPath.row]
+
+        cell.labelTaskName.text = task.name
+        cell.labelTaskCategory.text = (task.category?.name ?? "")
+
+
+        // проверяем дату на пустоту
+        if let deadline = task.deadline{
+            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
+        }else {
+            cell.labelDeadline?.text =  ""
+        }
 
         return cell
     }
