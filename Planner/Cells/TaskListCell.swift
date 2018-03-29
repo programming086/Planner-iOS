@@ -5,7 +5,8 @@ class TaskListCell: UITableViewCell {
 
     @IBOutlet weak var labelTaskName: UILabel!
     @IBOutlet weak var labelTaskCategory: UILabel!
-    
+    @IBOutlet weak var labelDeadline: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -62,6 +62,14 @@ class TaskListController: UITableViewController {
         cell.labelTaskName.text = task.name
         cell.labelTaskCategory.text = (task.category ?? "")
 
+
+        // проверяем дату на пустоту
+        if let deadline = task.deadline{
+            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
+        }else {
+            cell.labelDeadline?.text =  ""
+        }
+
         return cell
     }
 
