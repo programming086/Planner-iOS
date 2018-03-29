@@ -30,12 +30,12 @@ class TaskListController: UITableViewController {
 
     // сколько секций нужно отображать в таблице
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     // сколько будет записей в каждой секции
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tmpData.count
+        return section + 1
     }
 
 
@@ -50,7 +50,7 @@ class TaskListController: UITableViewController {
 
     // название для каждой секции
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Секция " + String(section)
+        return "Секция " + String(section + 1) // чтобы нумерация была с 1
     }
 
     // высота каждой секции
