@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,30 +28,36 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="labelName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7f-tk-9CB">
-                                            <rect key="frame" x="5" y="3" width="81.5" height="21"/>
+                                            <rect key="frame" x="5" y="3" width="294" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="labelDeadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4m-Ir-lma">
-                                            <rect key="frame" x="253" y="19" width="106" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="labelDeadline" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4m-Ir-lma">
+                                            <rect key="frame" x="275" y="20" width="89" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="aL6-Eg-qnG"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.17956426348326895" green="0.43188671287948605" blue="0.89605805837563457" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="labelCategory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQD-iv-Zy4">
-                                            <rect key="frame" x="5" y="27" width="101" height="19.5"/>
+                                            <rect key="frame" x="5" y="27" width="294" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="v7f-tk-9CB" firstAttribute="trailing" secondItem="n4m-Ir-lma" secondAttribute="leading" constant="-5" id="12i-r8-MN3"/>
                                         <constraint firstItem="v7f-tk-9CB" firstAttribute="leading" secondItem="Caw-tA-wMl" secondAttribute="leading" constant="5" id="9Lk-ba-1hD"/>
                                         <constraint firstItem="v7f-tk-9CB" firstAttribute="top" secondItem="Caw-tA-wMl" secondAttribute="top" constant="3" id="Awy-AQ-fwe"/>
                                         <constraint firstItem="vQD-iv-Zy4" firstAttribute="top" relation="lessThanOrEqual" secondItem="v7f-tk-9CB" secondAttribute="bottom" constant="2" id="IaX-gg-cyL"/>
                                         <constraint firstItem="vQD-iv-Zy4" firstAttribute="leading" secondItem="v7f-tk-9CB" secondAttribute="leading" id="J3M-2M-gAx"/>
+                                        <constraint firstItem="vQD-iv-Zy4" firstAttribute="trailing" secondItem="v7f-tk-9CB" secondAttribute="trailing" id="LLI-vc-EsT"/>
+                                        <constraint firstItem="n4m-Ir-lma" firstAttribute="centerY" secondItem="Caw-tA-wMl" secondAttribute="centerY" id="OrQ-Cj-9DD"/>
+                                        <constraint firstItem="n4m-Ir-lma" firstAttribute="trailing" secondItem="Caw-tA-wMl" secondAttribute="trailingMargin" constant="5" id="hn2-D7-sCJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
