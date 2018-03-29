@@ -7,7 +7,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // симулятор загрузки формы (чтобы успеть посмотреть launchscreen) - в рабочем проекте естественно нужно будет удалить
-        for i in 0...200000 {
+        for i in 0...700000 {
             print(i)
         }
 

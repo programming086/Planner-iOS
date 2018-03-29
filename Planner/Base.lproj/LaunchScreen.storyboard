@@ -18,33 +18,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Планировщик" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-iW-TU7">
-                                <rect key="frame" x="55" y="132" width="264" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tU6-bx-bnB">
-                                <rect key="frame" x="157" y="258" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tU6-bx-bnB">
+                                <rect key="frame" x="157" y="201" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Rw9-TA-JZa"/>
+                                    <constraint firstAttribute="width" constant="60" id="qjd-Qu-PKQ"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Тестовый проект для изучения основ iOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUR-AA-rsO">
-                                <rect key="frame" x="28" y="198" width="331" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тестовый проект для изучения основ iOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUR-AA-rsO">
+                                <rect key="frame" x="39.5" y="153" width="296" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Copyright © Тимур Батыршинов" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mC8-GG-Dvv">
-                                <rect key="frame" x="74" y="636" width="255" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © Тимур Батыршинов" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mC8-GG-Dvv">
+                                <rect key="frame" x="80" y="630" width="215" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Планировщик" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-iW-TU7">
+                                <rect key="frame" x="63.5" y="80" width="248.5" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.32156862745098036" green="0.3411764705882353" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mC8-GG-Dvv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8CH-mH-mkS"/>
+                            <constraint firstItem="tU6-bx-bnB" firstAttribute="top" secondItem="QUR-AA-rsO" secondAttribute="bottom" constant="30" id="Bvn-Lx-JR6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mC8-GG-Dvv" secondAttribute="bottom" constant="20" id="DRT-oZ-jwL"/>
+                            <constraint firstItem="kDd-iW-TU7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="FSE-DZ-zgm"/>
+                            <constraint firstItem="kDd-iW-TU7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Zbo-8h-8ZK"/>
+                            <constraint firstItem="QUR-AA-rsO" firstAttribute="top" secondItem="kDd-iW-TU7" secondAttribute="bottom" constant="30" id="dfg-OB-AMw"/>
+                            <constraint firstItem="QUR-AA-rsO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="e1E-hI-vwp"/>
+                            <constraint firstItem="tU6-bx-bnB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="xqa-t5-R73"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
