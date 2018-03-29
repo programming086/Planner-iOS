@@ -52,19 +52,15 @@ class TaskListController: UITableViewController {
 
     // отображение данных в строке
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath) as? TaskListCell else{
+            fatalError("cell type")
+        }
 
         let task = taskList[indexPath.row]
 
-        cell.textLabel?.text = task.name + " " + (task.priority ?? "")
-
-        // проверяем дату на пустоту
-        if let deadline = task.deadline{
-            cell.detailTextLabel?.text = (task.category ?? "") + " " + dateFormatter.string(from: deadline)
-        }else {
-            cell.detailTextLabel?.text =  (task.category ?? "")
-        }
-
+        cell.labelTaskName.text = task.name
+        cell.labelTaskCategory.text = (task.category ?? "")
 
         return cell
     }
