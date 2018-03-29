@@ -30,7 +30,7 @@ class TaskListController: UITableViewController {
         // получаем контекст из persistentContainer
         context = appDelegate.persistentContainer.viewContext
 
-        initData()// запускаем только 1 раз для заполнения таблиц
+//        initData()// запускаем только 1 раз для заполнения таблиц
 
         taskList = getAllTasks()
 
@@ -241,6 +241,28 @@ class TaskListController: UITableViewController {
         return 60
     }
 
+    // удаление строки
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+
+            // удалить задачу из БД
+            context.delete(taskList[indexPath.row])
+
+            do {
+                try context.save() // сохраняем изменений
+            } catch let error as NSError {
+                print("Could not save. \(error)")
+            }
+
+            // удалить саму строку и объект из коллекции (массива)
+            taskList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .top)
+
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
 
 
     /*
