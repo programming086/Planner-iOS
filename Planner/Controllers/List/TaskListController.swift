@@ -100,6 +100,13 @@ class TaskListController: UITableViewController {
 
         cell.labelDeadline.textColor = .lightGray
 
+        // отображать или нет иконку блокнота
+        if task.info == nil || (task.info?.isEmpty)!{
+            cell.buttonTaskInfo.isHidden = true // скрыть
+        }else{
+            cell.buttonTaskInfo.isHidden = false // показать
+        }
+
 
 
         // текст для отображения кол-ва дней по задаче

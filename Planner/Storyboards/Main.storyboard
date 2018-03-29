@@ -64,7 +64,7 @@
                                             <state key="normal" title="buttonComplete" image="check_not_complete"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="labelDeadline" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4m-Ir-lma">
-                                            <rect key="frame" x="252" y="21" width="80" height="17"/>
+                                            <rect key="frame" x="265" y="21" width="80" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="aL6-Eg-qnG"/>
                                             </constraints>
@@ -92,6 +92,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buttonTaskInfo" destination="YLz-fZ-btn" id="KzO-fz-smf"/>
                                     <outlet property="labelDeadline" destination="n4m-Ir-lma" id="ntL-Iw-eGR"/>
                                     <outlet property="labelPriority" destination="krb-QI-vx0" id="qhz-D8-F3S"/>
                                     <outlet property="labelTaskCategory" destination="vQD-iv-Zy4" id="eV7-6Y-Pb5"/>
