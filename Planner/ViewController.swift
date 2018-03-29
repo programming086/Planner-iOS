@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Planner
-//
-//  Created by Tim on 11.12.2017.
-//  Copyright © 2017 Tim. All rights reserved.
-//
 
 import UIKit
 
@@ -12,6 +5,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // симулятор загрузки формы (чтобы успеть посмотреть launchscreen) - в рабочем проекте естественно нужно будет удалить
+        for i in 0...200000 {
+            print(i)
+        }
+
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
