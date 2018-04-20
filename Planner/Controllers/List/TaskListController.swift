@@ -7,9 +7,9 @@ class TaskListController: UITableViewController {
 
     // временный массив для тестовых данных
     private var taskList:[Task] = [
-        Task(name:"Задача 1", category:"Категория 1"),
-        Task(name:"Задача 2", category:"Категория 2", priority: "Высокий"),
-        Task(name:"Задача 3", category:"Категория 3", deadline: Date()),
+        Task(name:"Задача 1 фывждлфы ждвлфыжвд лфыждвл жфдылвж дфлывждфл ыждвл фывфыв фыв ", category:"Категория 1"),
+        Task(name:"Задача 2", category:"Категория 2 фыдлв офыдлвофдылводфыловдфылвофдыловфдылво фывфывфывфыв", priority: "Высокий"),
+        Task(name:"Задача 3 фы юлфыо вдлофыдлвофыдлвофылдвофыдлвофы фывфывфывфыв ", category:"Категория 3 фыдвлофд ловдфыо длфыо двлофыдвл офыдвлофдлы в фывфывфывфывфыв", deadline: Date()),
         Task(name:"Задача 4", category:"Категория 4")
     ]
 
@@ -17,8 +17,13 @@ class TaskListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+
+        // симулятор загрузки формы (чтобы успеть посмотреть launchscreen) - в рабочем проекте естественно нужно будет удалить
+        for i in 0...300000 {
+            print(i)
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
