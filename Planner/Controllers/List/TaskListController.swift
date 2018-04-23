@@ -1,29 +1,41 @@
 
 import UIKit
+import CoreData
 
 class TaskListController: UITableViewController {
 
-        let dateFormatter = DateFormatter()
+    let dateFormatter = DateFormatter()
 
-    // временный массив для тестовых данных
-//    private var taskList:[Task] = [
-//        Task(name:"Задача 1 фывждлфы ждвлфыжвд лфыждвл жфдылвж дфлывждфл ыждвл фывфыв фыв ", category:"Категория 1"),
-//        Task(name:"Задача 2", category:"Категория 2 фыдлв офыдлвофдылводфыловдфылвофдыловфдылво фывфывфывфыв", priority: "Высокий"),
-//        Task(name:"Задача 3 фы юлфыо вдлофыдлвофыдлвофылдвофыдлвофы фывфывфывфыв ", category:"Категория 3 фыдвлофд ловдфыо длфыо двлофыдвл офыдвлофдлы в фывфывфывфывфыв", deadline: Date()),
-//        Task(name:"Задача 4", category:"Категория 4")
-//    ]
-
+    var context:NSManagedObjectContext! // контекст для связи объектов с БД
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
+//
+//        // симулятор загрузки формы (чтобы успеть посмотреть launchscreen) - в рабочем проекте естественно нужно будет удалить
+//        for i in 0...200000 {
+//            print(i)
+//        }
 
-        // симулятор загрузки формы (чтобы успеть посмотреть launchscreen) - в рабочем проекте естественно нужно будет удалить
-        for i in 0...300000 {
-            print(i)
+        // используем AppDelegate для получения доступа к контексту
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                fatalError("appdelegate error")
         }
+
+        // получаем контекст из persistentContainer
+        context = appDelegate.persistentContainer.viewContext
+
+
+        // добавляем категорию
+        let cat1 = addCategory(name: "Спорт")
+
+
+        // добавляем задачу с категорием (и пустым приоритетом)
+        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date(), info: "доп. инфо", category: cat1, priority: nil)
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,6 +48,45 @@ class TaskListController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+
+
+    func addCategory(name:String) -> Category{
+
+        let category = Category(context: context) // указываем контекст для объекта
+
+        category.name = name
+
+        do {
+            try context.save() // сохраняем каждый новый объект
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
+
+        return category // возвращаем созданную категорию
+    }
+
+
+    func addTask(name:String, completed:Bool, deadline:Date?, info:String?, category:Category?, priority:Priority?) -> Task{ // опциональные типы необязательно передавать
+
+        let task = Task(context: context) // указываем контекст для объекта
+
+        task.name = name
+        task.completed = completed
+        task.deadline = deadline
+        task.info = info
+        task.category = category
+        task.priority = priority
+
+        do {
+            try context.save() // сохраняем каждый новый объект
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
+
+        return task // возвращаем созданную задачу
+    }
+
 
 
 
