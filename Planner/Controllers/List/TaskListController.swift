@@ -6,12 +6,12 @@ class TaskListController: UITableViewController {
         let dateFormatter = DateFormatter()
 
     // временный массив для тестовых данных
-    private var taskList:[Task] = [
-        Task(name:"Задача 1 фывждлфы ждвлфыжвд лфыждвл жфдылвж дфлывждфл ыждвл фывфыв фыв ", category:"Категория 1"),
-        Task(name:"Задача 2", category:"Категория 2 фыдлв офыдлвофдылводфыловдфылвофдыловфдылво фывфывфывфыв", priority: "Высокий"),
-        Task(name:"Задача 3 фы юлфыо вдлофыдлвофыдлвофылдвофыдлвофы фывфывфывфыв ", category:"Категория 3 фыдвлофд ловдфыо длфыо двлофыдвл офыдвлофдлы в фывфывфывфывфыв", deadline: Date()),
-        Task(name:"Задача 4", category:"Категория 4")
-    ]
+//    private var taskList:[Task] = [
+//        Task(name:"Задача 1 фывждлфы ждвлфыжвд лфыждвл жфдылвж дфлывждфл ыждвл фывфыв фыв ", category:"Категория 1"),
+//        Task(name:"Задача 2", category:"Категория 2 фыдлв офыдлвофдылводфыловдфылвофдыловфдылво фывфывфывфыв", priority: "Высокий"),
+//        Task(name:"Задача 3 фы юлфыо вдлофыдлвофыдлвофылдвофыдлвофы фывфывфывфыв ", category:"Категория 3 фыдвлофд ловдфыо длфыо двлофыдвл офыдвлофдлы в фывфывфывфывфыв", deadline: Date()),
+//        Task(name:"Задача 4", category:"Категория 4")
+//    ]
 
 
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class TaskListController: UITableViewController {
 
     // сколько будет записей в каждой секции
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskList.count
+        return 1
     }
 
 
@@ -62,18 +62,18 @@ class TaskListController: UITableViewController {
             fatalError("cell type")
         }
 
-        let task = taskList[indexPath.row]
-
-        cell.labelTaskName.text = task.name
-        cell.labelTaskCategory.text = (task.category ?? "")
-
-
-        // проверяем дату на пустоту
-        if let deadline = task.deadline{
-            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
-        }else {
-            cell.labelDeadline?.text =  ""
-        }
+//        let task = taskList[indexPath.row]
+//
+//        cell.labelTaskName.text = task.name
+//        cell.labelTaskCategory.text = (task.category ?? "")
+//
+//
+//        // проверяем дату на пустоту
+//        if let deadline = task.deadline{
+//            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
+//        }else {
+//            cell.labelDeadline?.text =  ""
+//        }
 
         return cell
     }

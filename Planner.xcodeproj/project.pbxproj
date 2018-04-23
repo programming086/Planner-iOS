@@ -13,7 +13,6 @@
 		22759C791FDEA6E500E9A1E0 /* Planner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22759C771FDEA6E500E9A1E0 /* Planner.xcdatamodeld */; };
 		22759C7B1FDEA6E500E9A1E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22759C7A1FDEA6E500E9A1E0 /* Assets.xcassets */; };
 		22759C7E1FDEA6E500E9A1E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22759C7C1FDEA6E500E9A1E0 /* LaunchScreen.storyboard */; };
-		22E01EC52014918F004B5989 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E01EC42014918F004B5989 /* Task.swift */; };
 		22E01EC82014C2FB004B5989 /* TaskListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E01EC72014C2FB004B5989 /* TaskListCell.swift */; };
 		22E92C751FE16FC3001F8493 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E92C741FE16FC3001F8493 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		22759C7A1FDEA6E500E9A1E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22759C7D1FDEA6E500E9A1E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22759C7F1FDEA6E500E9A1E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22E01EC42014918F004B5989 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		22E01EC72014C2FB004B5989 /* TaskListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCell.swift; sourceTree = "<group>"; };
 		22E92C741FE16FC3001F8493 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				22E01EC62014C2A5004B5989 /* Cells */,
-				22E01EC320149173004B5989 /* Objects */,
 				22162C422011D60C000AAED5 /* Storyboards */,
 				22162C402011D5C0000AAED5 /* Controllers */,
 				22759C701FDEA6E500E9A1E0 /* AppDelegate.swift */,
@@ -98,14 +95,6 @@
 				22759C771FDEA6E500E9A1E0 /* Planner.xcdatamodeld */,
 			);
 			path = Planner;
-			sourceTree = "<group>";
-		};
-		22E01EC320149173004B5989 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				22E01EC42014918F004B5989 /* Task.swift */,
-			);
-			path = Objects;
 			sourceTree = "<group>";
 		};
 		22E01EC62014C2A5004B5989 /* Cells */ = {
@@ -190,7 +179,6 @@
 			files = (
 				22759C731FDEA6E500E9A1E0 /* ViewController.swift in Sources */,
 				22759C711FDEA6E500E9A1E0 /* AppDelegate.swift in Sources */,
-				22E01EC52014918F004B5989 /* Task.swift in Sources */,
 				22162C442011D694000AAED5 /* TaskListController.swift in Sources */,
 				22E01EC82014C2FB004B5989 /* TaskListCell.swift in Sources */,
 				22759C791FDEA6E500E9A1E0 /* Planner.xcdatamodeld in Sources */,
