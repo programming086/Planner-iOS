@@ -11,8 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        let urls = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
-        print(urls[urls.count-1] as URL) // получаем путь к папкам приложения
+//        let urls = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
+//        print(urls[urls.count-1] as URL) // получаем путь к папкам приложения
 
 
         return true
