@@ -6,9 +6,10 @@ class TaskListController: UITableViewController {
 
     let dateFormatter = DateFormatter()
 
+    let db = Db() // работает с БД
+
     var taskList:[Task]! // коллекция, которая будет заполняться из БД
 
-    var context:NSManagedObjectContext! // контекст для связи объектов с БД
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +22,12 @@ class TaskListController: UITableViewController {
 //            print(i)
 //        }
 
-        // используем AppDelegate для получения доступа к контексту
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                fatalError("appdelegate error")
-        }
 
-        // получаем контекст из persistentContainer
-        context = appDelegate.persistentContainer.viewContext
 
-//        initData()// запускаем только 1 раз для заполнения таблиц
 
-        taskList = getAllTasks()
+//        db.initData()// запускаем только 1 раз для заполнения таблиц
+
+        taskList = db.getAllTasks()
 
 
         // Uncomment the following line to preserve selection between presentations
@@ -47,100 +42,10 @@ class TaskListController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // нужно запускать только 1 раз
-    func initData() {
-        // добавляем категорию
-        let cat1 = addCategory(name: "Спорт")
-        let cat2 = addCategory(name: "Семья")
-        let cat3 = addCategory(name: "Отдых")
-
-        // добавляем категорию
-        let priority1 = addPriority(name: "Низкий", index:1)
-        let priority2 = addPriority(name: "Нормальный", index:2)
-        let priority3 = addPriority(name: "Высокий", index:3)
+   
 
 
-        // добавляем задачу с категорием (и пустым приоритетом)
-        let task1 = addTask(name: "Сходить в бассейн", completed: false, deadline: Date(), info: "доп. инфо", category: cat1, priority: priority1)
-        let task2 = addTask(name: "Выезд на природу", completed: false, deadline: Date(), info: "", category: cat3, priority: priority3)
-        let task3 = addTask(name: "Вынести мусор", completed: false, deadline: Date(), info: "", category: cat1, priority: priority3)
-        let task4 = addTask(name: "Купить продукты", completed: false, deadline: Date(), info: "доп. инфо", category: cat2, priority: priority1)
-        let task5 = addTask(name: "Помыть машину", completed: false, deadline: Date(), info: "", category: cat2, priority: priority1)
-
-    }
-
-
-    // получает все задачи из таблицы
-    func getAllTasks() -> [Task] {
-
-        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest() // подготовка контейнера для выборки данных
-
-        let list:[Task]
-
-        do {
-             list = try context.fetch(fetchRequest) // выборка данных
-        } catch {
-            fatalError("Fetching Failed")
-        }
-
-        return list
-
-    }
-
-    // добавить новую категорию
-    func addCategory(name:String) -> Category{
-
-        let category = Category(context: context) // указываем контекст для объекта
-
-        category.name = name
-
-        do {
-            try context.save() // сохраняем каждый новый объект
-        } catch let error as NSError {
-            print("Could not save. \(error)")
-        }
-
-        return category // возвращаем созданную категорию
-    }
-
-    // добавить новый приоритет
-    func addPriority(name:String, index: Int32) -> Priority{
-
-        let priority = Priority(context: context) // указываем контекст для объекта
-
-        priority.name = name
-        priority.index = index
-
-        do {
-            try context.save() // сохраняем каждый новый объект
-        } catch let error as NSError {
-            print("Could not save. \(error)")
-        }
-
-        return priority // возвращаем созданный приоритет
-    }
-
-
-    // добавить новую задачу
-    func addTask(name:String, completed:Bool, deadline:Date?, info:String?, category:Category?, priority:Priority?) -> Task{ // опциональные типы необязательно передавать
-
-        let task = Task(context: context) // указываем контекст для объекта
-
-        task.name = name
-        task.completed = completed
-        task.deadline = deadline
-        task.info = info
-        task.category = category
-        task.priority = priority
-
-        do {
-            try context.save() // сохраняем каждый новый объект
-        } catch let error as NSError {
-            print("Could not save. \(error)")
-        }
-
-        return task // возвращаем созданную задачу
-    }
+    
 
 
 
@@ -164,7 +69,7 @@ class TaskListController: UITableViewController {
     // отображение данных в строке
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath) as? TaskListCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTask", for: indexPath) as? TaskListCell else{
             fatalError("cell type")
         }
 
@@ -193,13 +98,40 @@ class TaskListController: UITableViewController {
         }
 
 
+        cell.labelDeadline.textColor = .lightGray
 
-        // проверяем дату на пустоту
-        if let deadline = task.deadline{
-            cell.labelDeadline?.text = dateFormatter.string(from: deadline)
-        }else {
-            cell.labelDeadline?.text =  ""
+        // отображать или нет иконку блокнота
+        if task.info == nil || (task.info?.isEmpty)!{
+            cell.buttonTaskInfo.isHidden = true // скрыть
+        }else{
+            cell.buttonTaskInfo.isHidden = false // показать
         }
+
+
+
+        // текст для отображения кол-ва дней по задаче
+        if let diff = task.daysLeft(){
+
+            switch diff {
+            case 0:
+                cell.labelDeadline.text = "Сегодня" // TODO: локализация
+            case 1:
+                cell.labelDeadline.text = "Завтра"
+            case 0...:
+                cell.labelDeadline.text = "\(diff) дн."
+
+            case ..<0:
+                cell.labelDeadline.textColor = .red
+                cell.labelDeadline.text = "\(diff) дн."
+
+            default:
+                cell.labelDeadline.text = ""
+            }
+
+        }else{
+            cell.labelDeadline.text = ""
+        }
+
 
         return cell
     }
@@ -209,6 +141,21 @@ class TaskListController: UITableViewController {
         return 60
     }
 
+    // удаление строки
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+
+            db.deleteTask(task: taskList[indexPath.row]) // удалить задачу из БД
+
+            // удалить саму строку и объект из коллекции (массива)
+            taskList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .top)
+
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
 
 
     /*
